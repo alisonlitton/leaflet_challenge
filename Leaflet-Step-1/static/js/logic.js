@@ -1,5 +1,5 @@
 // Store API link
-var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
+var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
 
 function markerSize(mag) {
   return mag * 30000;
@@ -22,7 +22,7 @@ function markerColor(mag) {
 }
 
 // Perform a GET request to the query URL
-d3.json(link, function(data) {
+d3.json(url, function(data) {
   // Once we get a response, send the data.features object to the createFeatures function
   createFeatures(data.features);
 });
@@ -40,7 +40,7 @@ function createFeatures(earthquakeData) {
       return new L.circle(latlng,
         {radius: markerSize(feature.properties.mag),
         fillColor: markerColor(feature.properties.mag),
-        fillOpacity: 1,
+        fillOpacity: .75,
         stroke: false,
     })
   }
